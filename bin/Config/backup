@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scraper>
+	<website name="Asos" handler="AsosHandler" crawl="AsosScraper">
+	</website>
+	
+	<website name="DavidJones" handler="DavidJonesHandler" crawl="DavidJonesScraper">
+	</website>
+	
+	<website name="H&M" handler="HandMHandler" crawl="HandMScraper">
+	</website>
+	
+	<website name="Myer" handler="MyerHandler" crawl="MyerScraper">
+	</website>
+	
+	<website name="Saba" handler="SabaHandler" crawl="SabaScraper">
+	</website>
+	
+	<website name="Iconic" handler="TheIconic" crawl="TheiconicScraper">
+	</website>
+	
+	<website name="UniversalStore" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
+	</website>
+</Scraper>
