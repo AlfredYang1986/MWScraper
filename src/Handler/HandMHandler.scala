@@ -1,11 +1,11 @@
 package Handler
 
+import HandlerProxy.HandMHandlerProxy
 import Application.JSONFileWriter
-import HandlerProxy.DavidJonesHandlerProxy
 
-class DavidJonesHandler extends PageHandler_2 {
+class HandMHandler extends PageHandler_2 {
 	def apply(url : String, webName : String) = {
-		val item = (new DavidJonesHandlerProxy).parseItem(url)
+		val item = (new HandMHandlerProxy).parseItem(url)
 		println(item.toJson)
 		JSONFileWriter(item, webName)
 	}

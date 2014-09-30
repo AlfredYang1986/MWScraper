@@ -21,36 +21,41 @@ trait CategoryCrawl extends Crawl_2 {
 	 * 1. search nav to get the url or the category
 	 */
 	def categoryQueryString : String
+	def cateUrlFromNode : Element => String
+	def cateUrlFilter : Element => Boolean = _ => true
+	
 	def getCategoryFromNav : List[String] = 
-		Jsoup.connect(url).get.select(categoryQueryString)
-			.asScala.toList map { iter => iter.attr("href")}
+		Jsoup.connect(url).timeout(0).get.select(categoryQueryString)
+//			.asScala.toList filter cateUrlFilter map cateUrlFromNode
+//			.asScala.toList map cateUrlFromNode
+			.asScala.toList.head :: Nil map cateUrlFromNode // only first for test
 		
 	/**
 	 * 2. get current page items
 	 */
 	def itemQueryString : String
 	def itmesPerPage(html : Document) : Int
+	
 	def totalItemsInPage(html : Document) : Int
-
-	def enumPagesInCategory(categories : List[String]) : List[String] = {
-		def enumItemInCategory(cate : String) : List[String] =
-			Jsoup.connect(cate).timeout(0).get.select(itemQueryString)
-				.asScala.toList map { iter => url + iter.attr("href") }
+	def totalPrintFunc(t : Int) = 
+		ScraperApp.printer.writeLine("there are " + t + " items in this category")
 		
+	def itemUrlFromPage: Element => String
+	def urlForNextPage(html : Document, baseUrl : String, pgeIndex : Int) : String
+	
+	def enumLoop(html : Document, page : String, PrintFunc : (Int, Int) => Unit) : List[String]
+	def enumLoopPrintFunc(s : Int, t : Int) = 
+		ScraperApp.printer.writeLine("now processing " + s + " of " + t + " items")
+	
+	def enumItemInCategory(cate : String) : List[String] =
+		Jsoup.connect(cate).timeout(0).get.select(itemQueryString)
+			.asScala.toList map itemUrlFromPage
+//			.asScala.toList.head :: Nil map itemUrlFromPage  // only first for test
+			
+	def enumPagesInCategory(categories : List[String]) : List[String] = {
 		def enumPages(page : String) : List[String] = {
 			val html = Jsoup.connect(page).timeout(0).get
-			val pgeSize = itmesPerPage(html)
-							 
-			val totalItemInPage = totalItemsInPage(html)
-					
-			ScraperApp.printer.writeLine("there are " + totalItemInPage + " items in this category")
-					
-			var reVal : List[String] = Nil
-			for (index <- 0 to totalItemInPage / pgeSize) { 
-				reVal = reVal ::: enumItemInCategory(page + "#pge=" + index)
-				ScraperApp.printer.writeLine("now processing " + reVal.size + " of " + totalItemInPage + " items")
-			}
-			reVal
+			enumLoop(html, page, enumLoopPrintFunc)
 		}
 		
 		ScraperApp.printer.writeLine("there are " + categories.size + " categories")
@@ -58,11 +63,12 @@ trait CategoryCrawl extends Crawl_2 {
 		categories map { iter => 
 			reVal = reVal ::: enumPages(iter)
 		}
-		reVal
+		reVal.distinct
 	}
 		
 	/**
 	 * 3. handler url to item
 	 */
-	def enumItems(itemUrls : List[String], handler : PageHandler_2) = itemUrls.distinct map { iter => handler.apply(iter, name) }
+	def enumItems(itemUrls : List[String], handler : PageHandler_2) = 
+		itemUrls map (handler(_, name))
 }

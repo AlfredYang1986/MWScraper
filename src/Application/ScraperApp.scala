@@ -19,8 +19,5 @@ object ScraperApp extends App {
 	 * Scraper system started
 	 */
 	printer.writeLine("Scraper running ...")
-//	println(WebsiteProxyConfigRender("/Users/yangyuan/Desktop/Scala/MWScraper/src/Config/Config.xml"))
-	WebsiteProxyConfigRender("/Users/yangyuan/Desktop/Scala/MWScraper/src/Config/Config.xml") map { item => 
-		item.apply
-	}
+	WebsiteProxyConfigRender("src/Config/Config.xml") map (_.apply)
 }

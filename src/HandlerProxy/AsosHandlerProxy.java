@@ -34,7 +34,7 @@ public class AsosHandlerProxy implements PageHandlerProxy {
 		//url = "http://www.asos.com/au/ASOS/ASOS-Tunic-Jumper-with-Splice-Print/Prod/pgeproduct.aspx?iid=3556638&cid=2637&sh=0&pge=0&pgesize=-1&sort=-1&clr=Navy%2fwhite&gender=women";
 		try {
 			String title, brand, price, prodCode, category, color, prodDesc, gender, img, discount;
-			Document itemPage = Jsoup.connect(url).get();
+			Document itemPage = Jsoup.connect(url).timeout(0).get();
 			if (itemPage != null) {
 				Elements itemTitles = itemPage
 						.getElementsByClass("product_title");
@@ -78,45 +78,46 @@ public class AsosHandlerProxy implements PageHandlerProxy {
 				color = color.substring(color.indexOf("=") + 1, color.indexOf("&"));
 
 				// get gender
-				gender = url.substring(url.indexOf("gender="));
-				gender = gender.substring(gender.indexOf("=") + 1,
-						gender.length());
+//				gender = url.substring(url.indexOf("gender="));
+//				gender = gender.substring(gender.indexOf("=") + 1,
+//						gender.length());
+				gender = "women";
 				
 				category = itemPage.select("div.breadcrumbs a[rel=nofollow]").last().text();
 				
 				/*
 				 * convert size to Json object
 				 */
-				JsonParser jparser = new JsonParser();
-				JsonArray sizeArray = new JsonArray();
-				JsonObject sizeObject = new JsonObject();
-				Elements sc = itemPage.getElementsByTag("script");
-				for(Element s : sc){
-					String script = s.toString();
-					if(script.indexOf("arrSzeCol_ctl00_ContentMainPage_ctlSeparateProduct") > -1){
-						script = s.childNode(0).toString();
-						script = script.substring(script.indexOf("-->") + 4, script.length());
-						ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
-						engine.eval(script);
-						Object obj = engine.get("arrSzeCol_ctl00_ContentMainPage_ctlSeparateProduct");
-						//json object required, native array here						
-						Gson gson = new Gson();
-						String str = gson.toJson(obj);
-						JsonElement je = jparser.parse(str);
-						JsonObject jo = je.getAsJsonObject();
-						JsonArray ja = new JsonArray();
-						for(Iterator<Entry<String, JsonElement>> iter = jo.entrySet().iterator(); iter.hasNext();){							
-						       ja.add(iter.next().getValue());
-						}
-						for(int i=0;i<ja.size();i++){
-							jo = ja.get(i).getAsJsonObject();
-							sizeObject.add("size", jo.get("1"));
-							sizeObject.add("avaliable", jo.get("3"));
-							sizeArray.add(jparser.parse(sizeObject.toString()));
-						}
-						break;
-					}
-				}
+//				JsonParser jparser = new JsonParser();
+//				JsonArray sizeArray = new JsonArray();
+//				JsonObject sizeObject = new JsonObject();
+//				Elements sc = itemPage.getElementsByTag("script");
+//				for(Element s : sc){
+//					String script = s.toString();
+//					if(script.indexOf("arrSzeCol_ctl00_ContentMainPage_ctlSeparateProduct") > -1){
+//						script = s.childNode(0).toString();
+//						script = script.substring(script.indexOf("-->") + 4, script.length());
+//						ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
+//						engine.eval(script);
+//						Object obj = engine.get("arrSzeCol_ctl00_ContentMainPage_ctlSeparateProduct");
+//						//json object required, native array here						
+//						Gson gson = new Gson();
+//						String str = gson.toJson(obj);
+//						JsonElement je = jparser.parse(str);
+//						JsonObject jo = je.getAsJsonObject();
+//						JsonArray ja = new JsonArray();
+//						for(Iterator<Entry<String, JsonElement>> iter = jo.entrySet().iterator(); iter.hasNext();){							
+//						       ja.add(iter.next().getValue());
+//						}
+//						for(int i=0;i<ja.size();i++){
+//							jo = ja.get(i).getAsJsonObject();
+//							sizeObject.add("size", jo.get("1"));
+//							sizeObject.add("avaliable", jo.get("3"));
+//							sizeArray.add(jparser.parse(sizeObject.toString()));
+//						}
+//						break;
+//					}
+//				}
 
 				//FileUtils.writeStringToFile(new File("page.txt"), itemPage.toString());
 				System.err.println(url);
@@ -131,7 +132,7 @@ public class AsosHandlerProxy implements PageHandlerProxy {
 				item.setProdCode(prodCode);
 				item.setPrice(price);
 				
-				item.setSizeArray(sizeArray);
+//				item.setSizeArray(sizeArray);
 				//Picture Json Object
 				JsonObject picObject = new JsonObject();
 				// Hard code

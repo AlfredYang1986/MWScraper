@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scraper>
-	<website name="Asos" handler="AsosHandler" crawl="AsosScraper">
+	<website name="Asos" url="http://www.asos.com" handler="AsosHandler" crawl="AsosScraper">
 	</website>
 	
-	<website name="DavidJones" handler="DavidJonesHandler" crawl="DavidJonesScraper">
+	<website name="DavidJones" url="http://shop.davidjones.com.au" handler="DavidJonesHandler" crawl="DavidJonesScraper">
 	</website>
 	
-	<website name="H&M" handler="HandMHandler" crawl="HandMScraper">
+	<website name="H;ampM" url="http://www.hm.com/au" handler="HandMHandler" crawl="HandMScraper">
 	</website>
 	
-	<website name="Myer" handler="MyerHandler" crawl="MyerScraper">
+	<website name="Myer" url="" handler="MyerHandler" crawl="MyerScraper">
 	</website>
 	
-	<website name="Saba" handler="SabaHandler" crawl="SabaScraper">
+	<website name="Saba" url="" handler="SabaHandler" crawl="SabaScraper">
 	</website>
 	
-	<website name="Iconic" handler="TheIconic" crawl="TheiconicScraper">
+	<website name="Iconic" url="" handler="TheIconic" crawl="TheiconicScraper">
 	</website>
 	
-	<website name="UniversalStore" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
+	<website name="UniversalStore" url="" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
 	</website>
 </Scraper>
