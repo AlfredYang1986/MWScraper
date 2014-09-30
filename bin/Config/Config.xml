@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scraper>
+	<website name="H&amp;M" url="http://www.hm.com/au" handler="HandMHandler" crawl="HandMScraper">
+	</website>
+</Scraper>
