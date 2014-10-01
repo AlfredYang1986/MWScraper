@@ -24,8 +24,8 @@ class HandMScraper(p : String) extends CategoryCrawl {
 	def totalItemsInPage(html : Document) : Int = html.select("div.bottom-bar > span")
 													.first.text.split(":").last.trim.substring(1).toInt
 	
-	def cateUrlFromNode : Element => String = iter => iter.attr("href")
-	def itemUrlFromPage: Element => String = iter => url + iter.attr("href")
+	def cateUrlFromNode : Element => String = _.attr("href")
+	def itemUrlFromPage: Element => String = _.attr("href")
 
 	def urlForNextPage(html : Document, baseUrl : String, pgeIndex : Int) : String = baseUrl + "#pge=" + pgeIndex
 	

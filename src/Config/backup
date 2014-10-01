@@ -12,12 +12,15 @@
 	<website name="Myer" url="http://www.myer.com.au" handler="MyerHandler" crawl="MyerScraper">
 	</website>
 	
-	<website name="Saba" url="" handler="SabaHandler" crawl="SabaScraper">
+	<website name="Saba" url="http://www.saba.com.au/" handler="SabaHandler" crawl="SabaScraper">
 	</website>
 	
-	<website name="Iconic" url="" handler="TheIconic" crawl="TheiconicScraper">
+	<website name="Iconic" url="http://www.theiconic.com.au" handler="TheIconicHandler" crawl="TheiconicScraper">
 	</website>
 	
-	<website name="UniversalStore" url="" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
+	<website name="UniversalStore" url="http://www.universalstore.com/mens/" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
+	</website>
+	
+	<website name="UniversalStore" url="http://www.universalstore.com/womens/" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
 	</website>
 </Scraper>

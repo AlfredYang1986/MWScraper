@@ -3,21 +3,24 @@
 	<website name="Asos" url="http://www.asos.com" handler="AsosHandler" crawl="AsosScraper">
 	</website>
 	
-	<website name="DavidJones" url="http://shop.davidjones.com.au" handler="DavidJonesHandler" crawl="DavidJonesScraper">
+	<website name="DavidJones" url="http://shop.davidjones.com.au/webapp/wcs/stores/servlet/DJBrandDirectoryView?catalogId=10051&amp;langId=-1&amp;storeId=10051" handler="DavidJonesHandler" crawl="DavidJonesScraper">
+	</website>
+		
+	<website name="H&amp;M" url="http://www.hm.com/au" handler="HandMHandler" crawl="HandMScraper">
 	</website>
 	
-	<website name="H;ampM" url="http://www.hm.com/au" handler="HandMHandler" crawl="HandMScraper">
+	<website name="Myer" url="http://www.myer.com.au" handler="MyerHandler" crawl="MyerScraper">
 	</website>
 	
-	<website name="Myer" url="" handler="MyerHandler" crawl="MyerScraper">
+	<website name="Saba" url="http://www.saba.com.au/" handler="SabaHandler" crawl="SabaScraper">
 	</website>
 	
-	<website name="Saba" url="" handler="SabaHandler" crawl="SabaScraper">
+	<website name="Iconic" url="http://www.theiconic.com.au" handler="TheIconicHandler" crawl="TheiconicScraper">
 	</website>
 	
-	<website name="Iconic" url="" handler="TheIconic" crawl="TheiconicScraper">
+	<website name="UniversalStore" url="http://www.universalstore.com/mens/" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
 	</website>
 	
-	<website name="UniversalStore" url="" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
+	<website name="UniversalStore" url="http://www.universalstore.com/womens/" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
 	</website>
 </Scraper>

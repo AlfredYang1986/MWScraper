@@ -12,6 +12,9 @@ object WebsiteProxyConfigRender {
 			  case "AsosScraper" => new AsosScraper(url)
 			  case "DavidJonesScraper" => new DavidJonesScraper(url)
 			  case "HandMScraper" => new HandMScraper(url)
+			  case "SabaScraper" => new SabaScraper(url)
+			  case "TheiconicScraper" => new TheiconicScraper(url)
+			  case "UniversalStoreScraper" => new UniversalStoreScraper(url)
 			  case _ => null
 			}
 		}
@@ -21,6 +24,9 @@ object WebsiteProxyConfigRender {
 			  case "AsosHandler" => new AsosHandler
 			  case "DavidJonesHandler" => new DavidJonesHandler
 			  case "HandMHandler" => new HandMHandler
+			  case "SabaHandler" => new SabaHandler 
+			  case "TheIconicHandler" => new TheiconicHandler 
+			  case "UniversalStoreHandler" => new UniversalStoreHandler 
 			  case _ => null
 			}
 		}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scraper>
-	<website name="Saba" url="http://www.saba.com.au/" handler="SabaHandler" crawl="SabaScraper">
+	<website name="UniversalStore" url="http://www.universalstore.com/mens/" handler="UniversalStoreHandler" crawl="UniversalStoreScraper">
 	</website>
 </Scraper>
